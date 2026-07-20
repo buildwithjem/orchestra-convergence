@@ -47,7 +47,7 @@ function statusLabel(s){
 }
 
 /* ============================================================
-   Node type registry (Doubao colors, softened)
+   Node type registry (accent colors)
    ============================================================ */
 const NODE_TYPES = {
   agent:        { accent:'rgb(59,130,246)',  label:'Agent',         inPorts:1, outPorts:1 },
@@ -197,7 +197,7 @@ function initTheme(){
 }
 
 /* ============================================================
-   Navigation (Feishu-style bottom tabs: Workflow / Benchmark)
+   Navigation (bottom tabs: Workflow / Benchmark)
    ============================================================ */
 function initNavigation(){
   $$('.nav-tab').forEach(btn => {
