@@ -1,9 +1,9 @@
 /* Orchestra Competition — Qwen Cloud Hackathon Track 3 */
 
 /* ============================================================
-   Doubao (豆包) Design System Tokens
-   - Dark (default): Doubao dark, clean, no glow
-   - Light: Doubao white-blue, native Feishu experience
+   Custom Design System Tokens
+   - Dark (default): clean, minimal, no glow
+   - Light: white-blue, professional experience
    ============================================================ */
 :root, :root[data-theme="dark"]{
     /* Background */
@@ -74,19 +74,19 @@
     --input-border: var(--border);
     --input-text: var(--text-1);
 
-    /* Shadows (Doubao style: soft) */
+    /* Shadows (soft, minimal) */
     --shadow-sm: 0 1px 4px rgba(0,0,0,0.20);
     --shadow-md: 0 4px 16px rgba(0,0,0,0.28);
     --shadow-float: 0 8px 32px rgba(0,0,0,0.36);
 
-    /* Radii (Doubao: 19.2px global, 14px component-level) */
+    /* Radii (19.2px global, 14px component-level) */
     --r-xl: 19.2px;
     --r-lg: 14px;
     --r-md: 10px;
     --r-sm: 8px;
     --r-xs: 6px;
 
-    /* Motion (native Feishu: smooth & natural) */
+    /* Motion (smooth & natural) */
     --ease: cubic-bezier(0.4, 0, 0.2, 1);
 
     /* Fonts */
@@ -181,7 +181,7 @@
   /* ============ Overall layout ============ */
   #app{display:flex;flex-direction:column;height:100vh;width:100vw;position:relative}
 
-  /* ============ Top bar (Doubao plain style) ============ */
+  /* ============ Top bar (plain style) ============ */
   #topbar{
     height:52px;flex-shrink:0;
     display:flex;align-items:center;
@@ -202,7 +202,7 @@
   .brand .sub{color:var(--text-3);font-weight:400;font-size:11px;letter-spacing:.02em;margin-left:2px}
   .topbar-spacer{flex:1}
 
-  /* Button (Doubao spec: pill shape 999px, 38px height, 500 13px) */
+  /* Button (spec: pill shape 999px, 38px height, 500 13px) */
   .btn{
     font-family:var(--ui);font-size:13px;font-weight:500;
     height:38px;padding:0 15px;border:1px solid var(--border);
@@ -370,7 +370,7 @@
   .status-pill.skipped{color:var(--text-3)}
   .status-pill.waitingForReview{color:var(--success);border-color:var(--success)}
 
-  /* Inspector (Doubao style: 14px radius, soft spacing) */
+  /* Inspector (14px radius, soft spacing) */
   #inspector{
     width:296px;flex-shrink:0;
     background:var(--surface-strong);
@@ -424,7 +424,7 @@
   .upstream-list .item:last-child{border-bottom:none}
   .upstream-list .item .uuid{font-family:var(--mono);font-size:10px;color:var(--text-3)}
 
-  /* ============ Output panel (Doubao-style bottom panel) ============ */
+  /* ============ Output panel (bottom panel) ============ */
   #output-panel{
     height:240px;flex-shrink:0;
     background:var(--surface-strong);
@@ -558,7 +558,7 @@
   .detail-section .row{display:flex;gap:14px;margin-bottom:11px}
   .detail-section .row:last-child{margin-bottom:0}
   .detail-section .row .field{flex:1;margin-bottom:0}
-  /* Table (Doubao spec) */
+  /* Table (spec) */
   table.presets{width:100%;border-collapse:collapse;font-size:12px}
   table.presets th,table.presets td{padding:13px 16px;text-align:left;border-bottom:1px solid color-mix(in srgb, var(--border) 80%, transparent)}
   table.presets th{font-weight:600;font-size:11px;font-family:var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--text-3);background:var(--surface-2)}
@@ -687,7 +687,7 @@
     white-space:pre-wrap;line-height:1.6;min-height:60px;
   }
 
-  /* ============ Bottom navigation (Feishu-style tab bar) ============ */
+  /* ============ Bottom navigation (tab bar) ============ */
   #bottom-nav{
     height:52px;flex-shrink:0;
     display:flex;align-items:center;justify-content:center;gap:4px;
