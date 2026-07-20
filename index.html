@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<title>Orchestra — Multi-Agent Convergence Platform</title>
+<link rel="stylesheet" href="css/style.css?v=2">
+</head>
+<body>
+<div id="app">
+
+  <!-- ============ Top bar ============ -->
+  <div id="topbar">
+    <div class="brand">
+      <span class="logo">
+        <svg viewBox="0 0 24 24"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg>
+      </span>
+      <span class="brand-name">Orchestra</span>
+      <span class="sub">Agent Convergence Platform</span>
+    </div>
+    <div class="topbar-spacer"></div>
+
+    <!-- Template selector -->
+    <select id="template-select" class="btn" title="Switch workflow template"></select>
+
+    <!-- API Key -->
+    <button class="btn" id="api-key-btn" title="Configure Qwen API Key">🔑 API Key</button>
+
+    <!-- Theme toggle -->
+    <button class="icon-btn" id="theme-toggle" title="Toggle theme (dark / light)">
+      <svg class="ico-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.6M12 19.4V22M2 12h2.6M19.4 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></svg>
+      <svg class="ico-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4 7 7 0 1 0 20 14.5z"/></svg>
+    </button>
+
+    <button class="btn" id="export-btn" disabled>Export Timeline</button>
+    <button class="btn primary" id="run-btn">Run <span class="kbd">⌘⇧R</span></button>
+    <button class="btn danger" id="stop-btn" disabled>Stop</button>
+  </div>
+
+  <!-- ============ Main area ============ -->
+  <div id="main">
+
+    <!-- Workflow page -->
+    <div class="page active" id="page-workflow">
+      <div id="palette">
+        <div class="palette-title">Nodes</div>
+        <div class="palette-node" draggable="true" data-t="agent"><div class="accent"></div>A<div class="palette-tooltip">Agent</div></div>
+        <div class="palette-node" draggable="true" data-t="convergence"><div class="accent"></div>C<div class="palette-tooltip">Convergence</div></div>
+        <div class="palette-node" draggable="true" data-t="adversarial"><div class="accent"></div>⚡<div class="palette-tooltip">Adversarial Reviewer</div></div>
+        <div class="palette-node" draggable="true" data-t="condition"><div class="accent"></div>?<div class="palette-tooltip">Condition</div></div>
+        <div class="palette-node" draggable="true" data-t="humanReview"><div class="accent"></div>H<div class="palette-tooltip">Human Review</div></div>
+        <div class="palette-node" draggable="true" data-t="deliver"><div class="accent"></div>D<div class="palette-tooltip">Deliver</div></div>
+      </div>
+
+      <div id="canvas-wrap">
+        <div id="canvas">
+          <svg id="edges-svg"></svg>
+          <!-- nodes injected here -->
+        </div>
+        <div class="help-hint">
+          <b>Orchestra canvas</b><br>
+          <span class="kbd">⌘⇧R</span> Run · <span class="kbd">Del</span> Delete · <span class="kbd">⌘C/⌘V</span> Copy/Paste<br>
+          Drag node body to move · Drag port to connect · Drag from palette to add
+        </div>
+      </div>
+
+      <div id="inspector">
+        <div class="insp-header">
+          <span class="title">Inspector</span>
+          <span class="node-id" id="insp-node-id"></span>
+        </div>
+        <div class="insp-body" id="insp-body">
+          <div class="insp-empty">
+            <span class="icon">◇</span>
+            Select a node to edit
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Benchmark page (rendered by js/benchmark.js) -->
+    <div class="page" id="page-benchmark"></div>
+
+  </div>
+
+  <!-- ============ Output panel ============ -->
+  <div id="output-panel">
+    <div class="output-header">
+      <button class="collapse-btn" id="output-collapse">▾</button>
+      <span class="title">Run Output</span>
+      <span class="live-indicator" id="output-live" style="display:none"><span class="dot"></span>LIVE</span>
+      <span class="spacer"></span>
+      <button class="clear-btn" id="output-clear">Clear</button>
+    </div>
+    <div class="output-body" id="output-body">
+      <div class="output-empty">Streaming output will appear here grouped by node after running the workflow.</div>
+    </div>
+  </div>
+
+  <!-- ============ Bottom navigation (Feishu-style: 2 tabs) ============ -->
+  <div id="bottom-nav">
+    <button class="nav-tab active" data-page="workflow">
+      <span class="ico"><svg viewBox="0 0 24 24"><circle cx="5" cy="6" r="2.3"/><circle cx="5" cy="18" r="2.3"/><circle cx="19" cy="12" r="2.3"/><path d="M7.2 6.6c3.4.3 6 1.6 8.3 4.1M7.2 17.4c3.4-.3 6-1.6 8.3-4.1"/></svg></span>
+      <span class="lbl">Workflow</span>
+    </button>
+    <button class="nav-tab" data-page="benchmark">
+      <span class="ico"><svg viewBox="0 0 24 24"><path d="M4 19h16M6 19V9M11 19V5M16 19v-7"/></svg></span>
+      <span class="lbl">Benchmark</span>
+    </button>
+  </div>
+
+  <div id="status-bar"></div>
+</div>
+
+<!-- Confirm modal -->
+<div id="modal-backdrop">
+  <div class="modal">
+    <div class="modal-title">Confirm</div>
+    <div class="modal-msg" id="modal-msg"></div>
+    <div class="modal-actions">
+      <button class="btn" id="modal-cancel">Cancel</button>
+      <button class="btn danger" id="modal-ok">Delete</button>
+    </div>
+  </div>
+</div>
+
+<!-- API Key modal -->
+<div id="api-key-modal">
+  <div class="modal">
+    <div class="modal-title">🔑 Qwen API Key</div>
+    <div class="modal-msg">Configure your DashScope API key to enable real Qwen model calls.</div>
+
+    <div class="field">
+      <label>API Key</label>
+      <input type="password" id="api-key-input" placeholder="sk-...">
+    </div>
+
+    <div class="field">
+      <label>Default Model</label>
+      <select id="api-key-model">
+        <option value="qwen-plus">Qwen Plus (balanced, fast)</option>
+        <option value="qwen-max">Qwen Max (strongest reasoning)</option>
+        <option value="qwen-turbo">Qwen Turbo (fastest, cheapest)</option>
+      </select>
+    </div>
+
+    <div class="api-key-note">
+      Get your free API key at <a href="https://bailian.console.aliyun.com" target="_blank" rel="noopener">bailian.console.aliyun.com</a>
+      (Alibaba Cloud Model Studio). The key is stored only in your browser's localStorage and sent
+      directly to <code>dashscope.aliyuncs.com</code>.
+    </div>
+    <div class="api-key-status" id="api-key-status"></div>
+
+    <div class="modal-actions">
+      <button class="btn" id="api-key-close">Close</button>
+      <button class="btn primary" id="api-key-save">Save</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<!-- ============ Scripts (classic scripts share global scope) ============
+     Load order matters for top-level executable statements:
+       api.js  → defines window.QwenAPI (no DOM access)
+       templates.js → defines window.TEMPLATES (no DOM access)
+       app.js → utilities/state/constants + immediate theme/nav/toolbar bindings
+       canvas.js → top-level palette/canvas listeners (needs state from app.js)
+       inspector.js → renderInspector function definition
+       engine.js → setInterval + function definitions
+       benchmark.js → renderBenchmarkPage function definition
+     The boot sequence runs AFTER all files load (inline script at bottom).
+-->
+<script src="js/api.js?v=2"></script>
+<script src="js/templates.js?v=2"></script>
+<script src="js/app.js?v=2"></script>
+<script src="js/canvas.js?v=2"></script>
+<script src="js/inspector.js?v=2"></script>
+<script src="js/engine.js?v=2"></script>
+<script src="js/benchmark.js?v=2"></script>
+
+<script>
+  // Boot the application once all classic scripts are loaded.
+  (function(){
+    try {
+      if(window.App && typeof window.App.bootOrchestra === 'function'){
+        window.App.bootOrchestra();
+      } else {
+        console.error('[Orchestra] boot function not found — check script load order');
+      }
+    } catch(e) {
+      console.error('[Orchestra] boot error:', e);
+    }
+
+    // URL param shortcut: ?key=sk-xxx sets API key on load (for testing)
+    (function(){
+      var params = new URLSearchParams(window.location.search);
+      var k = params.get('key');
+      if(k){
+        localStorage.setItem('qwen-api-key', k);
+        window.__QWEN_API_KEY__ = k;
+      }
+      var m = params.get('model');
+      if(m) localStorage.setItem('qwen-default-model', m);
+    })();
+  })();
+</script>
+</body>
+</html>

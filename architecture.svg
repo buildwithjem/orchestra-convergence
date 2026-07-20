@@ -1,0 +1,188 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 720" font-family="'SF Pro Display', 'Inter', -apple-system, sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#6B7280"/>
+    </marker>
+    <marker id="arrow-blue" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#3B82F6"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#EF4444"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1100" height="720" fill="#0F1117" rx="12"/>
+
+  <!-- Title -->
+  <text x="550" y="40" text-anchor="middle" fill="#F9FAFB" font-size="20" font-weight="700">Orchestra — System Architecture</text>
+  <text x="550" y="62" text-anchor="middle" fill="#9CA3AF" font-size="12">Multi-Agent Convergence Platform · Qwen Cloud Hackathon 2026 · Track 3: Agent Society</text>
+
+  <!-- ===== LAYER 1: Frontend (Visual Canvas) ===== -->
+  <rect x="40" y="85" width="1020" height="130" rx="10" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+  <text x="60" y="108" fill="#94A3B8" font-size="11" font-weight="600" letter-spacing="1">FRONTEND — VISUAL WORKFLOW CANVAS</text>
+
+  <!-- Canvas nodes -->
+  <rect x="60" y="120" width="140" height="44" rx="8" fill="#1D4ED8" opacity="0.9"/>
+  <text x="130" y="146" text-anchor="middle" fill="#FFF" font-size="11" font-weight="500">Drag &amp; Drop Canvas</text>
+
+  <rect x="220" y="120" width="130" height="44" rx="8" fill="#1D4ED8" opacity="0.9"/>
+  <text x="285" y="146" text-anchor="middle" fill="#FFF" font-size="11" font-weight="500">Node Inspector</text>
+
+  <rect x="370" y="120" width="130" height="44" rx="8" fill="#1D4ED8" opacity="0.9"/>
+  <text x="435" y="146" text-anchor="middle" fill="#FFF" font-size="11" font-weight="500">Template System</text>
+
+  <rect x="520" y="120" width="140" height="44" rx="8" fill="#1D4ED8" opacity="0.9"/>
+  <text x="590" y="146" text-anchor="middle" fill="#FFF" font-size="11" font-weight="500">Real-time Output</text>
+
+  <rect x="680" y="120" width="140" height="44" rx="8" fill="#1D4ED8" opacity="0.9"/>
+  <text x="750" y="146" text-anchor="middle" fill="#FFF" font-size="11" font-weight="500">Benchmark Panel</text>
+
+  <rect x="840" y="120" width="200" height="44" rx="8" fill="#1D4ED8" opacity="0.7"/>
+  <text x="940" y="146" text-anchor="middle" fill="#FFF" font-size="11" font-weight="500">Dark/Light Theme</text>
+
+  <text x="60" y="198" fill="#64748B" font-size="10">Vanilla HTML / CSS / JS — Zero dependencies, no build step</text>
+
+  <!-- ===== LAYER 2: Orchestration Engine ===== -->
+  <rect x="40" y="230" width="1020" height="180" rx="10" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+  <text x="60" y="253" fill="#94A3B8" font-size="11" font-weight="600" letter-spacing="1">ORCHESTRATION ENGINE (js/engine.js)</text>
+
+  <!-- Engine components -->
+  <rect x="60" y="268" width="180" height="50" rx="8" fill="#065F46" stroke="#10B981" stroke-width="1"/>
+  <text x="150" y="289" text-anchor="middle" fill="#A7F3D0" font-size="10" font-weight="600">DAG Topological Sort</text>
+  <text x="150" y="305" text-anchor="middle" fill="#6EE7B7" font-size="9">(Kahn's Algorithm)</text>
+
+  <rect x="260" y="268" width="180" height="50" rx="8" fill="#065F46" stroke="#10B981" stroke-width="1"/>
+  <text x="350" y="289" text-anchor="middle" fill="#A7F3D0" font-size="10" font-weight="600">Workflow Scheduler</text>
+  <text x="350" y="305" text-anchor="middle" fill="#6EE7B7" font-size="9">(async/await, parallel exec)</text>
+
+  <rect x="460" y="268" width="180" height="50" rx="8" fill="#065F46" stroke="#10B981" stroke-width="1"/>
+  <text x="550" y="289" text-anchor="middle" fill="#A7F3D0" font-size="10" font-weight="600">Convergence Loop</text>
+  <text x="550" y="305" text-anchor="middle" fill="#6EE7B7" font-size="9">(max iterations, feedback inject)</text>
+
+  <rect x="660" y="268" width="180" height="50" rx="8" fill="#065F46" stroke="#10B981" stroke-width="1"/>
+  <text x="750" y="289" text-anchor="middle" fill="#A7F3D0" font-size="10" font-weight="600">SSE Stream Parser</text>
+  <text x="750" y="305" text-anchor="middle" fill="#6EE7B7" font-size="9">(real-time chunk rendering)</text>
+
+  <!-- Agent flow diagram -->
+  <text x="60" y="345" fill="#94A3B8" font-size="10" font-weight="600">AGENT TOPOLOGY (Adversarial Convergence):</text>
+
+  <!-- Producer -->
+  <rect x="60" y="355" width="100" height="36" rx="6" fill="#7C3AED" opacity="0.9"/>
+  <text x="110" y="377" text-anchor="middle" fill="#FFF" font-size="10" font-weight="500">Producer</text>
+
+  <!-- Arrow to reviewers -->
+  <line x1="160" y1="373" x2="200" y2="363" stroke="#6B7280" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="160" y1="373" x2="200" y2="388" stroke="#6B7280" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Reviewer A -->
+  <rect x="205" y="348" width="100" height="30" rx="6" fill="#2563EB" opacity="0.9"/>
+  <text x="255" y="367" text-anchor="middle" fill="#FFF" font-size="9" font-weight="500">Reviewer A</text>
+
+  <!-- Reviewer B -->
+  <rect x="205" y="383" width="100" height="30" rx="6" fill="#2563EB" opacity="0.9"/>
+  <text x="255" y="402" text-anchor="middle" fill="#FFF" font-size="9" font-weight="500">Reviewer B</text>
+
+  <!-- Arrow to Adversarial -->
+  <line x1="305" y1="363" x2="345" y2="373" stroke="#6B7280" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="305" y1="398" x2="345" y2="378" stroke="#6B7280" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Adversarial -->
+  <rect x="350" y="355" width="110" height="36" rx="6" fill="#DC2626" opacity="0.9"/>
+  <text x="405" y="377" text-anchor="middle" fill="#FFF" font-size="10" font-weight="600">⚡ Adversarial</text>
+
+  <!-- Arrow to Condition -->
+  <line x1="460" y1="373" x2="500" y2="373" stroke="#6B7280" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Condition -->
+  <rect x="505" y="355" width="100" height="36" rx="6" fill="#D97706" opacity="0.9"/>
+  <text x="555" y="377" text-anchor="middle" fill="#FFF" font-size="10" font-weight="500">Condition</text>
+
+  <!-- Arrow to Deliver -->
+  <line x1="605" y1="373" x2="645" y2="373" stroke="#6B7280" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Deliver -->
+  <rect x="650" y="355" width="90" height="36" rx="6" fill="#059669" opacity="0.9"/>
+  <text x="695" y="377" text-anchor="middle" fill="#FFF" font-size="10" font-weight="500">Deliver</text>
+
+  <!-- Feedback loop (red dashed) -->
+  <path d="M 555 391 L 555 405 L 110 405 L 110 391" fill="none" stroke="#EF4444" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow-red)"/>
+  <text x="330" y="416" text-anchor="middle" fill="#F87171" font-size="9">Challenge → Feedback → Re-run</text>
+
+  <!-- ===== LAYER 3: AI Integration (Qwen Cloud) ===== -->
+  <rect x="40" y="425" width="1020" height="120" rx="10" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+  <text x="60" y="448" fill="#94A3B8" font-size="11" font-weight="600" letter-spacing="1">AI INTEGRATION — QWEN CLOUD (ALIBABA CLOUD)</text>
+
+  <!-- API layer -->
+  <rect x="60" y="462" width="200" height="50" rx="8" fill="#92400E" stroke="#F59E0B" stroke-width="1"/>
+  <text x="160" y="483" text-anchor="middle" fill="#FDE68A" font-size="10" font-weight="600">DashScope API Client</text>
+  <text x="160" y="499" text-anchor="middle" fill="#FCD34D" font-size="9">js/api.js — window.QwenAPI</text>
+
+  <!-- Endpoint -->
+  <rect x="290" y="462" width="260" height="50" rx="8" fill="#92400E" stroke="#F59E0B" stroke-width="1"/>
+  <text x="420" y="483" text-anchor="middle" fill="#FDE68A" font-size="10" font-weight="600">dashscope.aliyuncs.com</text>
+  <text x="420" y="499" text-anchor="middle" fill="#FCD34D" font-size="9">/compatible-mode/v1/chat/completions</text>
+
+  <!-- Models -->
+  <rect x="580" y="462" width="130" height="50" rx="8" fill="#78350F" stroke="#F59E0B" stroke-width="0.5"/>
+  <text x="645" y="483" text-anchor="middle" fill="#FDE68A" font-size="10">qwen-plus</text>
+  <text x="645" y="499" text-anchor="middle" fill="#FCD34D" font-size="9">(balanced)</text>
+
+  <rect x="720" y="462" width="130" height="50" rx="8" fill="#78350F" stroke="#F59E0B" stroke-width="0.5"/>
+  <text x="785" y="483" text-anchor="middle" fill="#FDE68A" font-size="10">qwen-max</text>
+  <text x="785" y="499" text-anchor="middle" fill="#FCD34D" font-size="9">(reasoning)</text>
+
+  <rect x="860" y="462" width="130" height="50" rx="8" fill="#78350F" stroke="#F59E0B" stroke-width="0.5"/>
+  <text x="925" y="483" text-anchor="middle" fill="#FDE68A" font-size="10">qwen-turbo</text>
+  <text x="925" y="499" text-anchor="middle" fill="#FCD34D" font-size="9">(fastest)</text>
+
+  <text x="60" y="535" fill="#64748B" font-size="10">Platform: Alibaba Cloud Model Studio (百炼) · bailian.console.aliyun.com · Streaming SSE</text>
+
+  <!-- ===== LAYER 4: Deployment ===== -->
+  <rect x="40" y="560" width="1020" height="80" rx="10" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+  <text x="60" y="583" fill="#94A3B8" font-size="11" font-weight="600" letter-spacing="1">DEPLOYMENT</text>
+
+  <rect x="60" y="595" width="200" height="34" rx="6" fill="#374151"/>
+  <text x="160" y="616" text-anchor="middle" fill="#D1D5DB" font-size="10">Alibaba Cloud OSS + CDN</text>
+
+  <rect x="280" y="595" width="200" height="34" rx="6" fill="#374151"/>
+  <text x="380" y="616" text-anchor="middle" fill="#D1D5DB" font-size="10">Static hosting (no server)</text>
+
+  <rect x="500" y="595" width="240" height="34" rx="6" fill="#374151"/>
+  <text x="620" y="616" text-anchor="middle" fill="#D1D5DB" font-size="10">API key in browser localStorage only</text>
+
+  <rect x="760" y="595" width="280" height="34" rx="6" fill="#374151"/>
+  <text x="900" y="616" text-anchor="middle" fill="#D1D5DB" font-size="10">GitHub (MIT License, open source)</text>
+
+  <!-- ===== Arrows between layers ===== -->
+  <!-- Frontend → Engine -->
+  <line x1="550" y1="215" x2="550" y2="230" stroke="#3B82F6" stroke-width="2" marker-end="url(#arrow-blue)"/>
+
+  <!-- Engine → AI -->
+  <line x1="160" y1="410" x2="160" y2="425" stroke="#F59E0B" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- AI → Deployment -->
+  <line x1="550" y1="545" x2="550" y2="560" stroke="#6B7280" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- ===== Legend ===== -->
+  <rect x="40" y="655" width="1020" height="50" rx="8" fill="#111827"/>
+  <text x="60" y="676" fill="#9CA3AF" font-size="10" font-weight="600">LEGEND:</text>
+  <rect x="130" y="668" width="12" height="12" rx="3" fill="#1D4ED8"/>
+  <text x="148" y="678" fill="#D1D5DB" font-size="9">Frontend UI</text>
+  <rect x="240" y="668" width="12" height="12" rx="3" fill="#065F46" stroke="#10B981" stroke-width="0.5"/>
+  <text x="258" y="678" fill="#D1D5DB" font-size="9">Engine</text>
+  <rect x="320" y="668" width="12" height="12" rx="3" fill="#7C3AED"/>
+  <text x="338" y="678" fill="#D1D5DB" font-size="9">Producer</text>
+  <rect x="410" y="668" width="12" height="12" rx="3" fill="#2563EB"/>
+  <text x="428" y="678" fill="#D1D5DB" font-size="9">Reviewers</text>
+  <rect x="510" y="668" width="12" height="12" rx="3" fill="#DC2626"/>
+  <text x="528" y="678" fill="#D1D5DB" font-size="9">Adversarial</text>
+  <rect x="620" y="668" width="12" height="12" rx="3" fill="#D97706"/>
+  <text x="638" y="678" fill="#D1D5DB" font-size="9">Condition</text>
+  <rect x="720" y="668" width="12" height="12" rx="3" fill="#059669"/>
+  <text x="738" y="678" fill="#D1D5DB" font-size="9">Deliver</text>
+  <rect x="800" y="668" width="12" height="12" rx="3" fill="#92400E" stroke="#F59E0B" stroke-width="0.5"/>
+  <text x="818" y="678" fill="#D1D5DB" font-size="9">Qwen Cloud (DashScope)</text>
+
+  <text x="60" y="696" fill="#6B7280" font-size="9">Orchestra · Qwen Cloud Global AI Hackathon 2026 · Track 3: Agent Society · github.com/BuildwithGem/orchestra</text>
+</svg>

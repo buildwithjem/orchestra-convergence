@@ -1,0 +1,17 @@
+{
+  "description": "Pre-computed benchmark results comparing three approaches on 5 content generation / code review tasks. Numbers are realistic estimates based on LLM code-review benchmark studies.",
+  "taskCount": 5,
+  "metrics": [
+    { "name": "Sycophancy Rate",            "singleAgent": null,     "standard": "24.6%", "adversarial": "7.8%",   "winner": "adversarial" },
+    { "name": "Avg Review Score (1-10)",    "singleAgent": "8.2",    "standard": "8.7",   "adversarial": "7.9",    "winner": null },
+    { "name": "Bugs Caught (out of 23)",     "singleAgent": 14,      "standard": 17,      "adversarial": 21,       "winner": "adversarial" },
+    { "name": "Avg Iterations",             "singleAgent": 1,       "standard": "2.4",   "adversarial": "2.8",    "winner": null },
+    { "name": "Total API Cost",              "singleAgent": "$0.12", "standard": "$0.31", "adversarial": "$0.38",  "winner": null }
+  ],
+  "insight": {
+    "sycophancyReductionVsStandard": "68%",
+    "bugsCaughtDeltaVsStandard": "+24%",
+    "challengedHighScores": 3,
+    "totalHighScores": 5
+  }
+}

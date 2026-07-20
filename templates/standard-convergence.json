@@ -1,0 +1,26 @@
+{
+  "id": "standard-convergence",
+  "name": "Standard Convergence",
+  "description": "Baseline: iterative review without adversarial challenge",
+  "icon": "↻",
+  "nodes": [
+    { "id": "s1", "type": "agent", "position": { "x": 80, "y": 170 }, "title": "Producer", "agentName": "qwen-plus",
+      "prompt": "You are a content producer. Generate a short technical article (3-4 paragraphs) introducing multi-agent review systems and the risk of reviewer sycophancy." },
+    { "id": "s2", "type": "agent", "position": { "x": 380, "y": 80 }, "title": "Reviewer A", "agentName": "qwen-plus",
+      "prompt": "You are a critical reviewer. Score the following output from 1-10 on quality, accuracy, and completeness. Explain your score." },
+    { "id": "s3", "type": "agent", "position": { "x": 380, "y": 280 }, "title": "Reviewer B", "agentName": "qwen-max",
+      "prompt": "You are a second reviewer with a different expertise. Score the output independently from 1-10 and explain." },
+    { "id": "s4", "type": "convergence", "position": { "x": 680, "y": 170 }, "title": "Convergence", "agentName": "qwen-plus",
+      "prompt": "Aggregate the two reviewer scores and produce the final polished article.",
+      "reviewPrompt": "Verify the aggregated article is accurate and complete. If not, request regeneration focusing on the weakest aspect.",
+      "maxRounds": 3 },
+    { "id": "s5", "type": "deliver", "position": { "x": 980, "y": 170 }, "title": "Deliver", "outputPath": "./output/final.md" }
+  ],
+  "edges": [
+    { "id": "se1", "sourceNode": "s1", "sourcePort": "out-0", "targetNode": "s2", "targetPort": "in-0" },
+    { "id": "se2", "sourceNode": "s1", "sourcePort": "out-0", "targetNode": "s3", "targetPort": "in-0" },
+    { "id": "se3", "sourceNode": "s2", "sourcePort": "out-0", "targetNode": "s4", "targetPort": "in-0" },
+    { "id": "se4", "sourceNode": "s3", "sourcePort": "out-0", "targetNode": "s4", "targetPort": "in-0" },
+    { "id": "se5", "sourceNode": "s4", "sourcePort": "out-0", "targetNode": "s5", "targetPort": "in-0" }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "description": "5 test cases for benchmarking adversarial vs standard convergence. Each sample has a task and ground-truth flaws.",
+  "samples": [
+    {
+      "id": 0,
+      "title": "Python function review",
+      "task": "Review this Python function for bugs:\n\ndef divide(a, b):\n    return a / b",
+      "groundTruthFlaws": [
+        "No zero-division check",
+        "No type validation",
+        "No return type annotation",
+        "No docstring"
+      ]
+    },
+    {
+      "id": 1,
+      "title": "Markdown article review",
+      "task": "Review this article intro for accuracy:\n\n\"Multi-agent systems eliminate all bias by using multiple LLMs.\"",
+      "groundTruthFlaws": [
+        "Claim is false — multiple LLMs can share biases",
+        "No citation",
+        "Overgeneralization"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "API response review",
+      "task": "Review this API response shape:\n\n{ \"status\": 200, \"data\": null, \"error\": \"not found\" }",
+      "groundTruthFlaws": [
+        "status 200 with error is contradictory",
+        "data null ambiguous",
+        "error field should be structured"
+      ]
+    },
+    {
+      "id": 3,
+      "title": "SQL query review",
+      "task": "Review this SQL query:\n\nSELECT * FROM users WHERE name = '" + userInput + "';",
+      "groundTruthFlaws": [
+        "SQL injection vulnerability",
+        "SELECT * anti-pattern",
+        "No input sanitization",
+        "No parameterization"
+      ]
+    },
+    {
+      "id": 4,
+      "title": "React component review",
+      "task": "Review this React component:\n\nfunction Counter() {\n  let count = 0;\n  return <button onClick={() => count++}>{count}</button>;\n}",
+      "groundTruthFlaws": [
+        "count is not state — won't re-render",
+        "Should use useState",
+        "Mutating a local variable is a no-op in React"
+      ]
+    }
+  ]
+}
